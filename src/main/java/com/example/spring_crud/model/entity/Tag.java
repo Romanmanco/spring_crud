@@ -5,14 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = "tags")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class User {
-
+public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,4 +20,6 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "time_create", nullable = false)
+    private LocalDateTime timeCreate;
 }
