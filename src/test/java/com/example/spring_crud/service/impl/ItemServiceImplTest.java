@@ -39,7 +39,6 @@ class ItemServiceImplTest {
 
     @Test
     void findAllWithPage() {
-        //todo понять код.
         List<Item> itemsList = getItemList();
         List<ItemDto> itmDtoList = getItemDtoList();
         PageImpl<Item> page = new PageImpl<Item>(itemsList);

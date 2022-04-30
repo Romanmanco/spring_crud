@@ -14,7 +14,7 @@ public class ItemMapper {
         dto.setBody(item.getBody());
         dto.setTimeCreate(item.getTimeCreate());
         dto.setTimeUpdate(item.getTimeUpdate());
-//        dto.setUserId(item.getUserId());
+        dto.setUserId(item.getUser().getId());
         return dto;
     }
 }
