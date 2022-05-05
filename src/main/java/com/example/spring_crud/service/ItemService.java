@@ -9,4 +9,6 @@ public interface ItemService {
     List<ItemDto> findAllWithPage(int page, int size);
 
     ItemDto getItemById(final Long id);
+
+    boolean postByIdIsPresent(Long postId);
 }

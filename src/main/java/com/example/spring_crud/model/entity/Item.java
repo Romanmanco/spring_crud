@@ -25,13 +25,14 @@ public class Item {
     @Column(name = "body", nullable = false)
     private String body;
 
-    @Column(name = "time_create", nullable = false)
+    @Column(name = "time_create", nullable = false, updatable = false)
     private LocalDateTime timeCreate;
 
     @Column(name = "time_update", nullable = false)
     private LocalDateTime timeUpdate;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(updatable = false)
     private User user;
 
     @ManyToMany

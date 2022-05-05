@@ -34,4 +34,8 @@ public class ItemServiceImpl implements ItemService {
         Item item = repository.getById(id);
         return mapper.entityToDto(item);
     }
+
+    public boolean postByIdIsPresent(Long postId){
+        return repository.existsById(postId);
+    }
 }

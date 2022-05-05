@@ -1,4 +1,4 @@
-package com.example.spring_crud.repository;
+package com.example.spring_crud.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
