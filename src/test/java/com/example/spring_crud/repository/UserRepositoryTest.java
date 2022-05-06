@@ -25,8 +25,6 @@ public class UserRepositoryTest {
 
     @Autowired
     UserRepository repository;
-    @Autowired
-    UserRepository userRepository;
 
     @Test
     public void findAllUsersTest() {
@@ -67,6 +65,6 @@ public class UserRepositoryTest {
     private void init() {
         User user = new User();
         user.setName(NAME);
-        userRepository.save(user);
+        repository.save(user);
     }
 }

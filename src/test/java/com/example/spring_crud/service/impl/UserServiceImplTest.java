@@ -57,9 +57,9 @@ public class UserServiceImplTest {
     }
 
     private List<UserDto> getUserDtoList() {
-        UserDto user = new UserDto();
-        user.setName(NAME);
-        return Arrays.asList(user);
+        UserDto userDto = new UserDto();
+        userDto.setName(NAME);
+        return Arrays.asList(userDto);
     }
 
     @Test
