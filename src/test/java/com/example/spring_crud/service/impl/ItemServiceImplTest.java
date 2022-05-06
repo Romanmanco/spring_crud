@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 class ItemServiceImplTest {
@@ -38,10 +39,10 @@ class ItemServiceImplTest {
     private ItemMapper mapper;
 
     @Test
-    void findAllWithPage() {
+    public void findAllWithPageTest() {
         List<Item> itemsList = getItemList();
         List<ItemDto> itmDtoList = getItemDtoList();
-        PageImpl<Item> page = new PageImpl<Item>(itemsList);
+        PageImpl<Item> page = new PageImpl<>(itemsList);
 
         Mockito.when(repository.findAll(PageRequest.of(1, 20)))
                 .thenReturn(page);
@@ -74,6 +75,8 @@ class ItemServiceImplTest {
 
 
     @Test
-    void getItemById() {
+    public void getItemByIdTest() {
+        getItemList();
+        assertNotNull(getItemList());
     }
 }

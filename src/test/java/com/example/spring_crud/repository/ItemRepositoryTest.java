@@ -64,7 +64,7 @@ class ItemRepositoryTest {
     }
 
     @Test
-    public void itemUpdateTest(){
+    public void itemUpdateTest() {
         init();
         List<Item> itemList = repository.findAll();
 
