@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tags")
+@Table(name = "tags", uniqueConstraints = { @UniqueConstraint(columnNames = "name") })
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -17,6 +17,7 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //todo uniquie
     @Column(name = "name", nullable = false)
     private String name;
 

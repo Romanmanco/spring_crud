@@ -10,24 +10,24 @@ public class SpringCrudApplication {
 		SpringApplication.run(SpringCrudApplication.class, args);
 
 //		ConfigurableApplicationContext context = SpringApplication.run(SpringCrudApplication.class, args);
-//		ItemRepository repository = context.getBean(ItemRepository.class);
+//		EntryRepository repository = context.getBean(EntryRepository.class);
 //
 //		// save a couple of item
-////		repository.save(new Item(2, "Заголовок", "Текст", LocalDateTime.now(), LocalDateTime.now(), 1));
+////		repository.save(new Entry(2, "Заголовок", "Текст", LocalDateTime.now(), LocalDateTime.now(), 1));
 //
 //
 //		// fetch all items
-//		Iterable<Item> items = repository.findAll();
+//		Iterable<Entry> items = repository.findAll();
 //		System.out.println("Items found with findAll():");
 //		System.out.println("-------------------------------");
-//		for (Item item : items) {
+//		for (Entry item : items) {
 //			System.out.println(item);
 //		}
 //		System.out.println();
 //
 //		// fetch an individual item by ID
-////		Item item = repository.findOne(1L);
-////		System.out.println("Item found with findOne(1L):");
+////		Entry item = repository.findOne(1L);
+////		System.out.println("Entry found with findOne(1L):");
 ////		System.out.println("--------------------------------");
 ////		System.out.println(item);
 ////		System.out.println();

@@ -47,18 +47,18 @@ public class UserServiceImplTest {
 
         List<UserDto> dtoList = userService.findAllWithPage(1, 20);
         assertEquals(1, dtoList.size());
-        assertEquals("Name", dtoList.get(0).getName());
+        assertEquals("Name", dtoList.get(0).getNickName());
     }
 
     private List<User> getUserList() {
         User user = new User();
-        user.setName(NAME);
+        user.setNickName(NAME);
         return Arrays.asList(user);
     }
 
     private List<UserDto> getUserDtoList() {
         UserDto userDto = new UserDto();
-        userDto.setName(NAME);
+        userDto.setNickName(NAME);
         return Arrays.asList(userDto);
     }
 

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ItemDto {
+public class EntryDto {
 
     private Long id;
     private String heading;

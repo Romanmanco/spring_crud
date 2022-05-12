@@ -9,11 +9,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "items")
+@Table(name = "entries")
+//, uniqueConstraints = {
+//        @UniqueConstraint(columnNames = "user"),
+//        @UniqueConstraint(columnNames = "timeCreate")
+//})
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Item {
+public class Entry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,14 +29,14 @@ public class Item {
     @Column(name = "body", nullable = false)
     private String body;
 
-    @Column(name = "time_create", nullable = false, updatable = false)
+    @Column(name = "time_create", nullable = false)
     private LocalDateTime timeCreate;
 
     @Column(name = "time_update", nullable = false)
     private LocalDateTime timeUpdate;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(updatable = false)
+    @ManyToOne (cascade = CascadeType.ALL)
+//    @Column(name = "user")
     private User user;
 
     @ManyToMany

@@ -1,9 +1,9 @@
 package com.example.spring_crud.service.impl;
 
-import com.example.spring_crud.mapper.ItemMapper;
-import com.example.spring_crud.model.dto.ItemDto;
-import com.example.spring_crud.model.entity.Item;
-import com.example.spring_crud.repository.ItemRepository;
+import com.example.spring_crud.mapper.EntryMapper;
+import com.example.spring_crud.model.dto.EntryDto;
+import com.example.spring_crud.model.entity.Entry;
+import com.example.spring_crud.repository.EntryRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
-class ItemServiceImplTest {
+class EntryServiceImplTest {
 
     private final String BODY = "body";
     private final String HEADING = "heading";
@@ -31,41 +31,41 @@ class ItemServiceImplTest {
 
     @Spy
     @InjectMocks
-    private ItemServiceImpl itemService;
+    private EntryServiceImpl itemService;
 
     @Mock
-    private ItemRepository repository;
+    private EntryRepository repository;
     @Mock
-    private ItemMapper mapper;
+    private EntryMapper mapper;
 
     @Test
     public void findAllWithPageTest() {
-        List<Item> itemsList = getItemList();
-        List<ItemDto> itmDtoList = getItemDtoList();
-        PageImpl<Item> page = new PageImpl<>(itemsList);
+        List<Entry> itemsList = getItemList();
+        List<EntryDto> itmDtoList = getItemDtoList();
+        PageImpl<Entry> page = new PageImpl<>(itemsList);
 
         Mockito.when(repository.findAll(PageRequest.of(1, 20)))
                 .thenReturn(page);
         Mockito.when(mapper.entityToDto(itemsList.get(0)))
                 .thenReturn(itmDtoList.get(0));
 
-        List<ItemDto> dtoList = itemService.findAllWithPage(1, 20);
+        List<EntryDto> dtoList = itemService.findAllWithPage(1, 20);
         assertEquals(1, dtoList.size());
         assertEquals("body", dtoList.get(0).getBody());
     }
 
-    private List<Item> getItemList() {
-        Item item = new Item();
-        item.setTimeUpdate(LocalDateTime.now());
-        item.setHeading(HEADING);
-        item.setBody(BODY);
-        item.setTimeCreate(CREATE_TIME);
-        item.setTimeUpdate(UPDATE_TIME);
-        return Arrays.asList(item);
+    private List<Entry> getItemList() {
+        Entry entry = new Entry();
+        entry.setTimeUpdate(LocalDateTime.now());
+        entry.setHeading(HEADING);
+        entry.setBody(BODY);
+        entry.setTimeCreate(CREATE_TIME);
+        entry.setTimeUpdate(UPDATE_TIME);
+        return Arrays.asList(entry);
     }
 
-    private List<ItemDto> getItemDtoList(){
-        ItemDto item = new ItemDto();
+    private List<EntryDto> getItemDtoList(){
+        EntryDto item = new EntryDto();
         item.setHeading(HEADING);
         item.setBody(BODY);
         item.setTimeCreate(CREATE_TIME);

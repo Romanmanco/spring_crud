@@ -1,24 +1,24 @@
 package com.example.spring_crud.controllers.rest;
 
-import com.example.spring_crud.service.ItemService;
+import com.example.spring_crud.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ItemController {
+public class EntryController {
     @Autowired
-    ItemService itemService;
+    EntryService entryService;
 
 //    @GetMapping("/items")
 //    public String items(Model model) {
-//        Iterable<Item> items = itemRepository.findAll();
+//        Iterable<Entry> items = itemRepository.findAll();
 //        model.addAttribute("items", items);
 //        return "items";
 //    }
 //
 //    @GetMapping("/item/{id}")
-//    public ItemDto getItemById(final @PathVariable("id") Long id) {
-//        return itemService.getItemById(id);
+//    public EntryDto getItemById(final @PathVariable("id") Long id) {
+//        return entryService.getItemById(id);
 //    }
 //
 //
@@ -36,17 +36,17 @@ public class ItemController {
 //                              @RequestParam User user,
 //                              @RequestParam List<Tag> tagList,
 //                              Model model){
-//        Item item = new Item(itemId, heading, body, timeCreate, timeUpdate, user, tagList);
+//        Entry item = new Entry(itemId, heading, body, timeCreate, timeUpdate, user, tagList);
 //        itemRepository.save(item);
 //        return "redirect:/items";
 //    }
 //
 //    @GetMapping("/item/{id}/edit")
 //    public String blogItemEdit(@PathVariable(value = "id") Long itemId, Model model) throws Exception {
-//        if (!itemService.postByIdIsPresent(itemId)) {
+//        if (!entryService.postByIdIsPresent(itemId)) {
 //            return "redirect:/items";
 //        }
-//        model.addAttribute("post", itemService.getItemById(itemId));
+//        model.addAttribute("post", entryService.getItemById(itemId));
 //        return "itemEdit";
 //    }
 //
@@ -59,7 +59,7 @@ public class ItemController {
 //                                 @RequestParam User user,
 //                                 @RequestParam List<Tag> tagList,
 //                                 Model model){
-//        Item item = itemRepository.findById(postId).orElseThrow();
+//        Entry item = itemRepository.findById(postId).orElseThrow();
 //        item.setHeading(heading);
 //        item.setBody(body);
 //        item.setTimeCreate(timeCreate);
@@ -73,7 +73,7 @@ public class ItemController {
 //
 //    @PostMapping("/item/{id}/remove")
 //    public String blogItemDelete(@PathVariable(value = "id") Long itemId, Model model){
-//        Item item = itemRepository.findById(itemId).orElseThrow();
+//        Entry item = itemRepository.findById(itemId).orElseThrow();
 //        itemRepository.delete(item);
 //
 //        return "redirect:/items";

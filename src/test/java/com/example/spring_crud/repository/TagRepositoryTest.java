@@ -1,6 +1,5 @@
 package com.example.spring_crud.repository;
 
-
 import com.example.spring_crud.model.entity.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,19 +23,17 @@ public class TagRepositoryTest {
 
     private final String NAME = "Name";
     private final String NAME_SECOND = "Name 2";
+    private final String NAME_THIRD = "Name 3";
     private final LocalDateTime CREATE_TIME = LocalDateTime.now();
-    private final int EXPECTED_VALUE_ONE = 1;
+    private final LocalDateTime CREATE_TIME_TWO = LocalDateTime.now().plusHours(1);
+    private final LocalDateTime CREATE_TIME_THIRD = LocalDateTime.now().plusDays(1);
+    private final Long STORED_ID = 1L;
+    private final int EXPECTED_VALUE_THREE = 3;
     private final int INDEX_OF_EXPECTED_TAG_ONE = 0;
+    private final int INDEX_OF_EXPECTED_TAG_TWO = 1;
 
     @Autowired
     TagRepository repository;
-
-    @Test
-    public void findAllTagsTest() {
-        init();
-        List<Tag> tagList = repository.findAll();
-        assertEquals(tagList, tagList);
-    }
 
     @Test
     public void tagSaveTest() {
@@ -43,7 +41,7 @@ public class TagRepositoryTest {
 
         List<Tag> tagList = repository.findAll();
 
-        assertEquals(EXPECTED_VALUE_ONE, tagList.size());
+        assertEquals(EXPECTED_VALUE_THREE, tagList.size());
         assertEquals(NAME, tagList.get(INDEX_OF_EXPECTED_TAG_ONE).getName());
         assertEquals(CREATE_TIME, tagList.get(INDEX_OF_EXPECTED_TAG_ONE).getTimeCreate());
     }
@@ -51,10 +49,15 @@ public class TagRepositoryTest {
     @Test
     public void findByIdTest() {
         init();
-        List<Tag> tagList = repository.findAll();
-        assertNotNull(tagList);
+
+        Tag storedTag = repository.getById(STORED_ID);
+        assertNotNull(storedTag);
+
+        assertEquals(NAME, storedTag.getName());
+        assertEquals(CREATE_TIME, storedTag.getTimeCreate());
     }
 
+    //как проверить уникальность ?
     @Test
     public void tagUpdateTest() {
         init();
@@ -62,17 +65,29 @@ public class TagRepositoryTest {
 
         Tag storedTag = tagList.get(INDEX_OF_EXPECTED_TAG_ONE);
         storedTag.setName(NAME_SECOND);
+        storedTag.setTimeCreate(CREATE_TIME_TWO);
 
         repository.save(storedTag);
 
         List<Tag> tagListTwo = repository.findAll();
+        assertEquals(EXPECTED_VALUE_THREE, tagList.size());
         assertEquals(NAME_SECOND, tagListTwo.get(INDEX_OF_EXPECTED_TAG_ONE).getName());
+        assertEquals(CREATE_TIME_TWO, tagListTwo.get(INDEX_OF_EXPECTED_TAG_ONE).getTimeCreate());
     }
 
     private void init() {
         Tag tag = new Tag();
         tag.setName(NAME);
         tag.setTimeCreate(CREATE_TIME);
-        repository.save(tag);
+
+        Tag tag2 = new Tag();
+        tag2.setName(NAME_SECOND);
+        tag2.setTimeCreate(CREATE_TIME_TWO);
+
+        Tag tag3 = new Tag();
+        tag3.setName(NAME_THIRD);
+        tag3.setTimeCreate(CREATE_TIME_THIRD);
+
+        repository.saveAll(Arrays.asList(tag, tag2, tag3));
     }
 }
