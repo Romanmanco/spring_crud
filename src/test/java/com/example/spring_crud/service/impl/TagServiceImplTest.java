@@ -14,16 +14,23 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 public class TagServiceImplTest {
 
-    private final String NAME = "Name";
+    private static final Long STORED_ID = 1L;
+    private static final String NAME = "Name";
+    private static final LocalDateTime TIME_CREATE = LocalDateTime.now();
+    private static final TagDto TAG_DTO = new TagDto(STORED_ID, NAME, TIME_CREATE);
+    private static final Tag STORED_TAG = new Tag(STORED_ID, NAME, TIME_CREATE);
+
+    private TagDto tagDto;
 
     @Spy
     @InjectMocks
@@ -33,6 +40,7 @@ public class TagServiceImplTest {
     private TagRepository repository;
     @Mock
     private TagMapper mapper;
+
 
     @Test
     public void findAllTagsTest() {
@@ -50,21 +58,43 @@ public class TagServiceImplTest {
         assertEquals("Name", dtoList.get(0).getName());
     }
 
+    @Test
+    public void getTagByIdTest() {
+        Mockito.when(repository.getById(STORED_ID))
+                .thenReturn(STORED_TAG);
+        Mockito.when(mapper.entityToDto(STORED_TAG))
+                .thenReturn(TAG_DTO);
+
+        TagDto tagById = tagService.getTagById(STORED_ID);
+
+        assertEquals(TAG_DTO, tagById);
+    }
+
+    @Test
+    public void tagSaveTest() {
+        tagDto = new TagDto(STORED_ID, NAME, TIME_CREATE);
+        boolean success = tagService.saveTag(tagDto);
+        assertTrue(success);
+    }
+
+    @Test
+    public void tagDeleteTest() {
+        boolean successDel = tagService.deleteById(STORED_ID);
+
+        assertTrue(successDel);
+    }
+
     private List<Tag> getTagList() {
         Tag tag = new Tag();
         tag.setName(NAME);
+        tag.setTimeCreate(TIME_CREATE);
         return Arrays.asList(tag);
     }
 
     private List<TagDto> getTagDtoList() {
         TagDto tagDto = new TagDto();
         tagDto.setName(NAME);
+        tagDto.setTimeCreate(TIME_CREATE);
         return Arrays.asList(tagDto);
-    }
-
-    @Test
-    public void getItemByIdTest() {
-        getTagList();
-        assertNotNull(getTagList());
     }
 }

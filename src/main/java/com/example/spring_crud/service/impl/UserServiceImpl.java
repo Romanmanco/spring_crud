@@ -20,6 +20,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper mapper;
 
+//todo Добавить методы createEntity, updateEntity,
+//deleteEntity в каждом сервисе и сделать их реализацию.
+
     @Override
     public List<UserDto> findAllWithPage(int page, int size) {
         Page<User> users = repository.findAll(PageRequest.of(page, size));

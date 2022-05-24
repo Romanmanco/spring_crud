@@ -20,6 +20,9 @@ public class EntryServiceImpl implements EntryService {
     @Autowired
     EntryMapper mapper;
 
+    //todo Добавить методы createEntity, updateEntity,
+//deleteEntity в каждом сервисе и сделать их реализацию.
+
     @Override
     public List<EntryDto> findAllWithPage(int page, int size) {
         Page<Entry> items = repository.findAll(PageRequest.of(page, size));
@@ -39,3 +42,4 @@ public class EntryServiceImpl implements EntryService {
         return repository.existsById(postId);
     }
 }
+//получить записи постранично по тегу(на будущее, если все готово)

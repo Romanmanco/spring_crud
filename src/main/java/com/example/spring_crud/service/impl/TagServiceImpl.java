@@ -17,8 +17,13 @@ import java.util.stream.Collectors;
 public class TagServiceImpl implements TagService {
     @Autowired
     TagRepository repository;
+
+
     @Autowired
     TagMapper mapper;
+
+    //todo Добавить методы createEntity,
+//deleteEntity в каждом сервисе и сделать их реализацию.
 
     @Override
     public List<TagDto> findAllWithPage(int page, int size) {
@@ -33,5 +38,26 @@ public class TagServiceImpl implements TagService {
     public TagDto getTagById(final Long id) {
         Tag tag = repository.getById(id);
         return mapper.entityToDto(tag);
+    }
+
+    @Override
+    public boolean saveTag(TagDto tagDto) {
+        Tag tag = mapper.dtoToEntity(tagDto);
+        try {
+            repository.save(tag);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteById(final Long id) {
+        try {
+            repository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

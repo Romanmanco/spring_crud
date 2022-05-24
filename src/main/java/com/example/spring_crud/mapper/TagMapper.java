@@ -14,4 +14,12 @@ public class TagMapper {
         dto.setTimeCreate(tag.getTimeCreate());
         return dto;
     }
+
+    public Tag dtoToEntity(final TagDto tagDto) {
+        final Tag dto = new Tag();
+        dto.setName(tagDto.getName());
+        dto.setTimeCreate(tagDto.getTimeCreate());
+        return dto;
+    }
 }
+//todo dtoToEntity + test
