@@ -16,4 +16,14 @@ public class UserMapper {
         dto.setTmeRegistration(user.getTimeRegistration());
         return dto;
     }
+
+    public User dtoToEntity(final UserDto userDto) {
+        final User entity = new User();
+        entity.setId(userDto.getId());
+        entity.setLogin(userDto.getLogin());
+        entity.setPassword(userDto.getPassword());
+        entity.setNickName(userDto.getNickName());
+        entity.setTimeRegistration(userDto.getTmeRegistration());
+        return entity;
+    }
 }

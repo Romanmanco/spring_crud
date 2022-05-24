@@ -20,8 +20,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper mapper;
 
-//todo Добавить методы createEntity, updateEntity,
-//deleteEntity в каждом сервисе и сделать их реализацию.
+//todo Добавить метод, updateEntity,
 
     @Override
     public List<UserDto> findAllWithPage(int page, int size) {
@@ -36,5 +35,35 @@ public class UserServiceImpl implements UserService {
     public UserDto getUserById(final Long id) {
         User user = repository.getById(id);
         return mapper.entityToDto(user);
+    }
+
+    @Override
+    public UserDto updateUser(Long id) {
+        return null;
+    }
+
+    @Override
+    public boolean saveUser(UserDto userDto) {
+        User user = mapper.dtoToEntity(userDto);
+        try {
+            repository.save(user);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        try {
+            repository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public UserServiceImpl() {
+        super();
     }
 }

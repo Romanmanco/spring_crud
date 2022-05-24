@@ -10,4 +10,9 @@ public interface UserService {
 
     UserDto getUserById(final Long id);
 
+    UserDto updateUser(final Long id);
+
+    boolean saveUser(UserDto userDto);
+
+    boolean deleteById(final Long id);
 }
