@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUser(Long id) {
+    public UserDto updateUser(final Long id) {
         return null;
     }
 
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteById(Long id) {
+    public boolean deleteById(final Long id) {
         try {
             repository.deleteById(id);
             return true;

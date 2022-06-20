@@ -17,4 +17,15 @@ public class EntryMapper {
         dto.setUserId(entry.getUser().getId());
         return dto;
     }
+
+    public Entry dtoToEntity(final EntryDto entryDto) {
+        final Entry entity = new Entry();
+        entity.setId(entryDto.getId());
+        entity.setHeading(entryDto.getHeading());
+        entity.setBody(entryDto.getBody());
+        entity.setTimeCreate(entryDto.getTimeCreate());
+        entity.setTimeUpdate(entryDto.getTimeUpdate());
+        entity.setUser(entity.getUser());
+        return entity;
+    }
 }

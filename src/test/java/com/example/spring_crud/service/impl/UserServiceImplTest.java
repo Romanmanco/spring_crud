@@ -79,9 +79,8 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void tagDeleteTest() {
+    public void userDeleteTest() {
         boolean successDel = userService.deleteById(STORED_ID);
-
         assertTrue(successDel);
     }
 

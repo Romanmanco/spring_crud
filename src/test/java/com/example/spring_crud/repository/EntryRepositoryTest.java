@@ -22,26 +22,26 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 class EntryRepositoryTest {
 
-    private final String EXPECTED_TAG_NAME = "tag";
+    private static final String EXPECTED_TAG_NAME = "tag";
     private static final LocalDateTime EXPECTED_TAG_CREATE_TIME = LocalDateTime.now();
 
-    private final String HEADING = "heading";
-    private final String HEADING_SECOND = "heading 2";
-    private final String BODY = "body";
-    private final String BODY_SECOND = "body 2";
-    private final LocalDateTime CREATE_TIME = LocalDateTime.now();
-    private final LocalDateTime CREATE_TIME_SECOND = LocalDateTime.now().plusHours(1);
-    private final LocalDateTime UPDATE_TIME = LocalDateTime.now().plusDays(1);
-    private final LocalDateTime UPDATE_TIME_SECOND = LocalDateTime.now().plusDays(1).plusHours(1);
-    private final int EXPECTED_VALUE_ONE = 1;
-    private final int INDEX_OF_EXPECTED_ENTRY_ONE = 0;
-    private final Long FIRST_USER_ID = 1L;
-    private final Long STORED_ID = 1L;
+    private static final String HEADING = "heading";
+    private static final String HEADING_SECOND = "heading 2";
+    private static final String BODY = "body";
+    private static final String BODY_SECOND = "body 2";
+    private static final LocalDateTime CREATE_TIME = LocalDateTime.now();
+    private static final LocalDateTime CREATE_TIME_SECOND = LocalDateTime.now().plusHours(1);
+    private static final LocalDateTime UPDATE_TIME = LocalDateTime.now().plusDays(1);
+    private static final LocalDateTime UPDATE_TIME_SECOND = LocalDateTime.now().plusDays(1).plusHours(1);
+    private static final int EXPECTED_VALUE_ONE = 1;
+    private static final int INDEX_OF_EXPECTED_ENTRY_ONE = 0;
+    private static final Long FIRST_USER_ID = 1L;
+    private static final Long STORED_ID = 1L;
 
     private static final String EXPECTED_USER_LOGIN = "Login";
     private static final String EXPECTED_USER_LOGIN_SECOND = "Login 2";
-    private final String EXPECTED_USER_NICK = "Tasty User";
-    private final String EXPECTED_USER_NICK_SECOND = "Tasty User 2";
+    private static final String EXPECTED_USER_NICK = "Tasty User";
+    private static final String EXPECTED_USER_NICK_SECOND = "Tasty User 2";
     private static final String EXPECTED_USER_PASSWORD = "Password";
     private static final String EXPECTED_USER_PASSWORD_SECOND = "Password 2";
     private static final LocalDateTime EXPECTED_USER_REG_TIME = LocalDateTime.now();
@@ -127,8 +127,8 @@ class EntryRepositoryTest {
         init();
         List<Entry> entryList = repository.findAllByUserId(FIRST_USER_ID);
         assertEquals(EXPECTED_VALUE_ONE, entryList.size());
-        assertEquals(BODY, entryList.get(INDEX_OF_EXPECTED_ENTRY_ONE).getBody());
         assertEquals(HEADING, entryList.get(INDEX_OF_EXPECTED_ENTRY_ONE).getHeading());
+        assertEquals(BODY, entryList.get(INDEX_OF_EXPECTED_ENTRY_ONE).getBody());
         assertEquals(CREATE_TIME, entryList.get(INDEX_OF_EXPECTED_ENTRY_ONE).getTimeCreate());
         assertEquals(CREATE_TIME, entryList.get(INDEX_OF_EXPECTED_ENTRY_ONE).getTimeUpdate());
         assertEquals(EXPECTED_USER_NICK, entryList.get(INDEX_OF_EXPECTED_ENTRY_ONE).getUser().getNickName());

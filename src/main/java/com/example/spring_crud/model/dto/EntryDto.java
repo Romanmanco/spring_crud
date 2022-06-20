@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,4 +18,5 @@ public class EntryDto {
     private LocalDateTime timeCreate;
     private LocalDateTime timeUpdate;
     private Long userId;
+    private List<TagDto> tagList;
 }

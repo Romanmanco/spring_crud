@@ -6,9 +6,13 @@ import java.util.List;
 
 public interface EntryService {
 
-    List<EntryDto> findAllWithPage(int page, int size);
+    List<EntryDto> findAllWithPage(final int page, final int size);
 
-    EntryDto getItemById(final Long id);
+    EntryDto getEntryById(final Long id);
 
-    boolean postByIdIsPresent(Long postId);
+    boolean updateEntry(final EntryDto dto);
+
+    boolean saveEntry(final EntryDto entryDto);
+
+    boolean deleteById(final Long id);
 }
