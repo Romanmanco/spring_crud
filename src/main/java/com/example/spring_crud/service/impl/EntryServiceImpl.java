@@ -43,7 +43,7 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    public boolean updateEntry(final EntryDto dto) {
+    public boolean updateEntry(EntryDto dto) {
         //найти запись
         Entry entry = repository.getById(dto.getId());
 
@@ -63,10 +63,11 @@ public class EntryServiceImpl implements EntryService {
         }
     }
 
+    //TODO все приватные методы должны быть под публичными
     private List<Tag> getTagList(List<TagDto> tagList) {
         List<Tag> listTag = new ArrayList<>();
         for (TagDto element : tagList) {
-            Tag tag = tagMapper.dtoToEntity(element);
+            Tag tag = tagMapper.dtoToTag(element);
             listTag.add(tag);
         }
         return listTag;

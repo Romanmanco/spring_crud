@@ -50,7 +50,7 @@ public class TagServiceImplTest {
 
         Mockito.when(repository.findAll(PageRequest.of(1, 20)))
                 .thenReturn(page);
-        Mockito.when(mapper.entityToDto(tagList.get(0)))
+        Mockito.when(mapper.tagToDto(tagList.get(0)))
                 .thenReturn(tagDtoList.get(0));
 
         List<TagDto> dtoList = tagService.findAllWithPage(1, 20);
@@ -62,7 +62,7 @@ public class TagServiceImplTest {
     public void getTagByIdTest() {
         Mockito.when(repository.getById(STORED_ID))
                 .thenReturn(STORED_TAG);
-        Mockito.when(mapper.entityToDto(STORED_TAG))
+        Mockito.when(mapper.tagToDto(STORED_TAG))
                 .thenReturn(TAG_DTO);
 
         TagDto tagById = tagService.getTagById(STORED_ID);

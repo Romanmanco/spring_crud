@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class EntryMapper {
 
-    public EntryDto entityToDto(final Entry entry) {
-        final EntryDto dto = new EntryDto();
+    public EntryDto entityToDto(Entry entry) {
+        EntryDto dto = new EntryDto();
         dto.setId(entry.getId());
         dto.setHeading(entry.getHeading());
         dto.setBody(entry.getBody());
@@ -18,8 +18,8 @@ public class EntryMapper {
         return dto;
     }
 
-    public Entry dtoToEntity(final EntryDto entryDto) {
-        final Entry entity = new Entry();
+    public Entry dtoToEntity(EntryDto entryDto) {
+        Entry entity = new Entry();
         entity.setId(entryDto.getId());
         entity.setHeading(entryDto.getHeading());
         entity.setBody(entryDto.getBody());

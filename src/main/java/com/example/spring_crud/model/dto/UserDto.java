@@ -15,5 +15,5 @@ public class UserDto {
     private String login;
     private String password;
     private String nickName;
-    private LocalDateTime tmeRegistration;
+    private LocalDateTime timeRegistration;
 }

@@ -8,9 +8,9 @@ public interface TagService {
 
     List<TagDto> findAllWithPage(int page, int size);
 
-    TagDto getTagById(final Long id);
+    TagDto getTagById(Long id);
 
     boolean saveTag(TagDto tagDto);
 
-    boolean deleteById(final Long id);
+    boolean deleteById(Long id);
 }

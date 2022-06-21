@@ -24,17 +24,17 @@ public class UserRepositoryTest {
     private static final String EXPECTED_USER_LOGIN = "Login";
     private static final String EXPECTED_USER_LOGIN_SECOND = "Login 2";
     private static final Long STORED_ID = 1L;
-    private final String EXPECTED_USER_NICK = "Tasty User";
-    private final String EXPECTED_USER_NICK_SECOND = "Tasty User 2";
+    private static final String EXPECTED_USER_NICK = "Tasty User";
+    private static final String EXPECTED_USER_NICK_SECOND = "Tasty User 2";
     private static final String EXPECTED_USER_PASSWORD = "Password";
     private static final String EXPECTED_USER_PASSWORD_SECOND = "Password 2";
     private static final LocalDateTime EXPECTED_USER_REG_TIME = LocalDateTime.now();
     private static final LocalDateTime EXPECTED_USER_REG_TIME_SECOND = LocalDateTime.now().plusHours(1);
     private static final int INDEX_OF_EXPECTED_USER_ONE = 0;
 
-    private final String HEADING = "heading";
-    private final String BODY = "body";
-    private final LocalDateTime CREATE_TIME = LocalDateTime.now();
+    private static final String HEADING = "heading";
+    private static final String BODY = "body";
+    private static final LocalDateTime CREATE_TIME = LocalDateTime.now();
 
     @Autowired
     UserRepository repository;

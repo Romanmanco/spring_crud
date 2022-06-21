@@ -51,7 +51,7 @@ public class UserServiceImplTest {
 
         Mockito.when(repository.findAll(PageRequest.of(1, 20)))
                 .thenReturn(page);
-        Mockito.when(mapper.entityToDto(userList.get(0)))
+        Mockito.when(mapper.userToDto(userList.get(0)))
                 .thenReturn(userDtoList.get(0));
 
         List<UserDto> dtoList = userService.findAllWithPage(1, 20);
@@ -63,7 +63,7 @@ public class UserServiceImplTest {
     public void getUserByIdTest() {
         Mockito.when(repository.getById(STORED_ID))
                 .thenReturn(STORED_USER);
-        Mockito.when(mapper.entityToDto(STORED_USER))
+        Mockito.when(mapper.userToDto(STORED_USER))
                 .thenReturn(USER_DTO);
 
         UserDto userById = userService.getUserById(STORED_ID);
@@ -98,7 +98,7 @@ public class UserServiceImplTest {
         userDto.setLogin(LOGIN);
         userDto.setPassword(PASSWORD);
         userDto.setNickName(NICK_NAME);
-        userDto.setTmeRegistration(TIME_REGISTRATION);
+        userDto.setTimeRegistration(TIME_REGISTRATION);
         return Arrays.asList(userDto);
     }
 }

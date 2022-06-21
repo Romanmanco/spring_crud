@@ -29,20 +29,20 @@ public class TagServiceImpl implements TagService {
     public List<TagDto> findAllWithPage(int page, int size) {
         Page<Tag> tags = repository.findAll(PageRequest.of(page, size));
         List<TagDto> dtoList = tags.stream()
-                .map(tag -> mapper.entityToDto(tag))
+                .map(tag -> mapper.tagToDto(tag))
                 .collect(Collectors.toList());
         return dtoList;
     }
 
     @Override
-    public TagDto getTagById(final Long id) {
+    public TagDto getTagById(Long id) {
         Tag tag = repository.getById(id);
-        return mapper.entityToDto(tag);
+        return mapper.tagToDto(tag);
     }
 
     @Override
     public boolean saveTag(TagDto tagDto) {
-        Tag tag = mapper.dtoToEntity(tagDto);
+        Tag tag = mapper.dtoToTag(tagDto);
         try {
             repository.save(tag);
             return true;
@@ -52,7 +52,7 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public boolean deleteById(final Long id) {
+    public boolean deleteById(Long id) {
         try {
             repository.deleteById(id);
             return true;

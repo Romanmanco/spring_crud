@@ -21,16 +21,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Transactional
 public class TagRepositoryTest {
 
-    private final String NAME = "Name";
-    private final String NAME_SECOND = "Name 2";
-    private final String NAME_THIRD = "Name 3";
-    private final LocalDateTime CREATE_TIME = LocalDateTime.now();
-    private final LocalDateTime CREATE_TIME_TWO = LocalDateTime.now().plusHours(1);
-    private final LocalDateTime CREATE_TIME_THIRD = LocalDateTime.now().plusDays(1);
-    private final Long STORED_ID = 1L;
-    private final int EXPECTED_VALUE_THREE = 3;
-    private final int INDEX_OF_EXPECTED_TAG_ONE = 0;
-    private final int INDEX_OF_EXPECTED_TAG_TWO = 1;
+    private static final String NAME = "Name";
+    private static final String NAME_SECOND = "Name 2";
+    private static final String NAME_THIRD = "Name 3";
+    private static final LocalDateTime CREATE_TIME = LocalDateTime.now();
+    private static final LocalDateTime CREATE_TIME_TWO = LocalDateTime.now().plusHours(1);
+    private static final LocalDateTime CREATE_TIME_THIRD = LocalDateTime.now().plusDays(1);
+    private static final Long STORED_ID = 1L;
+    private static final int EXPECTED_VALUE_THREE = 3;
+    private static final int INDEX_OF_EXPECTED_TAG_ONE = 0;
+    private static final int INDEX_OF_EXPECTED_TAG_TWO = 1;
 
     @Autowired
     TagRepository repository;

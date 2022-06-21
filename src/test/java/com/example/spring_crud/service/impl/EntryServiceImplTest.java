@@ -128,7 +128,7 @@ class EntryServiceImplTest {
     public void entryUpdateTest() {
         Mockito.when(repository.getById(ENTRY_DTO.getId()))
                 .thenReturn(STORED_ENTRY);
-        Mockito.when(tagMapper.dtoToEntity(TAG_DTO_TWO))
+        Mockito.when(tagMapper.dtoToTag(TAG_DTO_TWO))
                 .thenReturn(TAG_TWO);
 
         boolean success = entryService.updateEntry(ENTRY_DTO);

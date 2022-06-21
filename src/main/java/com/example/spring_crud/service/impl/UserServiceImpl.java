@@ -26,25 +26,25 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> findAllWithPage(int page, int size) {
         Page<User> users = repository.findAll(PageRequest.of(page, size));
         List<UserDto> dtoList = users.stream()
-                .map(user -> mapper.entityToDto(user))
+                .map(user -> mapper.userToDto(user))
                 .collect(Collectors.toList());
         return dtoList;
     }
 
     @Override
-    public UserDto getUserById(final Long id) {
+    public UserDto getUserById(Long id) {
         User user = repository.getById(id);
-        return mapper.entityToDto(user);
+        return mapper.userToDto(user);
     }
 
     @Override
-    public UserDto updateUser(final Long id) {
-        return null;
+    public boolean updateUser(Long id) {
+        return true;
     }
 
     @Override
     public boolean saveUser(UserDto userDto) {
-        User user = mapper.dtoToEntity(userDto);
+        User user = mapper.dtoToUser(userDto);
         try {
             repository.save(user);
             return true;
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteById(final Long id) {
+    public boolean deleteById(Long id) {
         try {
             repository.deleteById(id);
             return true;

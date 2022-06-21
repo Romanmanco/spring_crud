@@ -7,16 +7,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class TagMapper {
 
-    public TagDto entityToDto(final Tag tag) {
-        final TagDto dto = new TagDto();
+    public TagDto tagToDto(Tag tag) {
+        TagDto dto = new TagDto();
         dto.setId(tag.getId());
         dto.setName(tag.getName());
         dto.setTimeCreate(tag.getTimeCreate());
         return dto;
     }
 
-    public Tag dtoToEntity(final TagDto tagDto) {
-        final Tag entity = new Tag();
+    public Tag dtoToTag(TagDto tagDto) {
+        Tag entity = new Tag();
+        entity.setId(tagDto.getId());
         entity.setName(tagDto.getName());
         entity.setTimeCreate(tagDto.getTimeCreate());
         return entity;

@@ -29,9 +29,9 @@ public class RepositoryTestConfiguration implements RepositoryConfiguration {
 
     @Bean
     public DataSource dataSource() {
-        final PostgreSQLContainer<?> postgresContainer = postgresContainer();
+        PostgreSQLContainer<?> postgresContainer = postgresContainer();
 
-        final HikariConfig config = new HikariConfig();
+        HikariConfig config = new HikariConfig();
         config.setDriverClassName(postgresContainer.getDriverClassName());
         config.setJdbcUrl(postgresContainer.getJdbcUrl());
         config.setUsername(postgresContainer.getUsername());
