@@ -1,18 +1,19 @@
 package com.example.spring_crud.service;
 
-import com.example.spring_crud.model.dto.EntryDto;
+import com.example.spring_crud.model.dto.EntryRequestDto;
+import com.example.spring_crud.model.dto.EntryResponseDto;
 
 import java.util.List;
 
 public interface EntryService {
 
-    List<EntryDto> findAllWithPage(int page, int size);
+    List<EntryResponseDto> findAllWithPage(int page, int size);
 
-    EntryDto getEntryById(Long id);
+    EntryResponseDto getEntryById(Long id);
 
-    boolean updateEntry(EntryDto dto);
+    boolean updateEntry(EntryRequestDto dto);
 
-    boolean saveEntry(EntryDto dto);
+    boolean saveEntry(EntryRequestDto dto);
 
     boolean deleteById(Long id);
 }

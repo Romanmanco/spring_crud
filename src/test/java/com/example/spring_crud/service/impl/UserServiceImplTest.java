@@ -1,7 +1,7 @@
 package com.example.spring_crud.service.impl;
 
 import com.example.spring_crud.mapper.UserMapper;
-import com.example.spring_crud.model.dto.UserDto;
+import com.example.spring_crud.model.dto.UserRequestDto;
 import com.example.spring_crud.model.entity.User;
 import com.example.spring_crud.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -29,10 +29,10 @@ public class UserServiceImplTest {
     private static final String PASSWORD = "Password";
     private static final String NICK_NAME = "Name";
     private static final LocalDateTime TIME_REGISTRATION = LocalDateTime.now();
-    private static final UserDto USER_DTO = new UserDto(STORED_ID, LOGIN, PASSWORD, NICK_NAME, TIME_REGISTRATION);
+    private static final UserRequestDto USER_DTO = new UserRequestDto(STORED_ID, LOGIN, PASSWORD, NICK_NAME, TIME_REGISTRATION);
     private static final User STORED_USER = new User(STORED_ID, LOGIN, PASSWORD, NICK_NAME, TIME_REGISTRATION);
 
-    private UserDto userDto;
+    private UserRequestDto userRequestDto;
 
     @Spy
     @InjectMocks
@@ -46,15 +46,15 @@ public class UserServiceImplTest {
     @Test
     public void findAllUsersTest() {
         List<User> userList = getUserList();
-        List<UserDto> userDtoList = getUserDtoList();
+        List<UserRequestDto> userRequestDtoList = getUserDtoList();
         PageImpl<User> page = new PageImpl<>(userList);
 
         Mockito.when(repository.findAll(PageRequest.of(1, 20)))
                 .thenReturn(page);
         Mockito.when(mapper.userToDto(userList.get(0)))
-                .thenReturn(userDtoList.get(0));
+                .thenReturn(userRequestDtoList.get(0));
 
-        List<UserDto> dtoList = userService.findAllWithPage(1, 20);
+        List<UserRequestDto> dtoList = userService.findAllWithPage(1, 20);
         assertEquals(1, dtoList.size());
         assertEquals("Name", dtoList.get(0).getNickName());
     }
@@ -66,15 +66,15 @@ public class UserServiceImplTest {
         Mockito.when(mapper.userToDto(STORED_USER))
                 .thenReturn(USER_DTO);
 
-        UserDto userById = userService.getUserById(STORED_ID);
+        UserRequestDto userById = userService.getUserById(STORED_ID);
 
         assertEquals(USER_DTO, userById);
     }
 
     @Test
     public void userSaveTest() {
-        userDto = new UserDto(STORED_ID, LOGIN, PASSWORD, NICK_NAME, TIME_REGISTRATION);
-        boolean success = userService.saveUser(userDto);
+        userRequestDto = new UserRequestDto(STORED_ID, LOGIN, PASSWORD, NICK_NAME, TIME_REGISTRATION);
+        boolean success = userService.saveUser(userRequestDto);
         assertTrue(success);
     }
 
@@ -93,12 +93,12 @@ public class UserServiceImplTest {
         return Arrays.asList(user);
     }
 
-    private List<UserDto> getUserDtoList() {
-        UserDto userDto = new UserDto();
-        userDto.setLogin(LOGIN);
-        userDto.setPassword(PASSWORD);
-        userDto.setNickName(NICK_NAME);
-        userDto.setTimeRegistration(TIME_REGISTRATION);
-        return Arrays.asList(userDto);
+    private List<UserRequestDto> getUserDtoList() {
+        UserRequestDto userRequestDto = new UserRequestDto();
+        userRequestDto.setLogin(LOGIN);
+        userRequestDto.setPassword(PASSWORD);
+        userRequestDto.setNickName(NICK_NAME);
+        userRequestDto.setTimeRegistration(TIME_REGISTRATION);
+        return Arrays.asList(userRequestDto);
     }
 }

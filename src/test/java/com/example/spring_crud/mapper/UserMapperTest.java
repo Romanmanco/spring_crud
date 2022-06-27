@@ -1,6 +1,6 @@
 package com.example.spring_crud.mapper;
 
-import com.example.spring_crud.model.dto.UserDto;
+import com.example.spring_crud.model.dto.UserRequestDto;
 import com.example.spring_crud.model.entity.User;
 import org.junit.jupiter.api.Test;
 
@@ -16,12 +16,12 @@ public class UserMapperTest {
     private static final String NICK_NAME = "Name";
     private static final LocalDateTime TIME_REGISTRATION = LocalDateTime.now();
 
-    private static final UserDto USER_DTO = new UserDto(ID, LOGIN, PASSWORD, NICK_NAME, TIME_REGISTRATION);
+    private static final UserRequestDto USER_DTO = new UserRequestDto(ID, LOGIN, PASSWORD, NICK_NAME, TIME_REGISTRATION);
     private static final User USER = new User(ID, LOGIN, PASSWORD, NICK_NAME, TIME_REGISTRATION);
 
     @Test
     void userToDto() {
-        UserDto dto = USER_DTO;
+        UserRequestDto dto = USER_DTO;
         User user = new UserMapper().dtoToUser(dto);
 
         assertEquals(ID, user.getId());
@@ -34,12 +34,12 @@ public class UserMapperTest {
     @Test
     void dtoToUser() {
         User user = USER;
-        UserDto userDto = new UserMapper().userToDto(user);
+        UserRequestDto userRequestDto = new UserMapper().userToDto(user);
 
-        assertEquals(ID, userDto.getId());
-        assertEquals(LOGIN, userDto.getLogin());
-        assertEquals(PASSWORD, userDto.getPassword());
-        assertEquals(NICK_NAME, userDto.getNickName());
-        assertEquals(TIME_REGISTRATION, userDto.getTimeRegistration());
+        assertEquals(ID, userRequestDto.getId());
+        assertEquals(LOGIN, userRequestDto.getLogin());
+        assertEquals(PASSWORD, userRequestDto.getPassword());
+        assertEquals(NICK_NAME, userRequestDto.getNickName());
+        assertEquals(TIME_REGISTRATION, userRequestDto.getTimeRegistration());
     }
 }

@@ -1,16 +1,16 @@
 package com.example.spring_crud.service;
 
-import com.example.spring_crud.model.dto.TagDto;
+import com.example.spring_crud.model.dto.TagRequestDto;
 
 import java.util.List;
 
 public interface TagService {
 
-    List<TagDto> findAllWithPage(int page, int size);
+    List<TagRequestDto> findAllWithPage(int page, int size);
 
-    TagDto getTagById(Long id);
+    TagRequestDto getTagById(Long id);
 
-    boolean saveTag(TagDto tagDto);
+    boolean saveTag(TagRequestDto tagRequestDto);
 
     boolean deleteById(Long id);
 }

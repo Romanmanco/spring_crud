@@ -1,7 +1,8 @@
 package com.example.spring_crud.mapper;
 
-import com.example.spring_crud.model.dto.EntryDto;
-import com.example.spring_crud.model.dto.TagDto;
+import com.example.spring_crud.model.dto.EntryRequestDto;
+import com.example.spring_crud.model.dto.EntryResponseDto;
+import com.example.spring_crud.model.dto.TagResponseDto;
 import com.example.spring_crud.model.entity.Entry;
 import com.example.spring_crud.model.entity.Tag;
 import com.example.spring_crud.model.entity.User;
@@ -26,31 +27,34 @@ class EntryMapperTest {
     private static final Tag TAG_ONE = new Tag(STORED_ID_ONE, "Name", LocalDateTime.now());
     private static final List<Tag> TAG_LIST = Arrays.asList(TAG_ONE);
     private static final Entry ENTRY = new Entry(STORED_ID_ONE, HEADING, BODY, CREATE_TIME, UPDATE_TIME, USER, TAG_LIST);
-    private static final TagDto TAG_DTO_ONE = new TagDto(STORED_ID_ONE, "Name", LocalDateTime.now());
-    private static final List<TagDto> TAG_DTO_LIST = Arrays.asList(TAG_DTO_ONE);
-    private static final EntryDto ENTRY_DTO = new EntryDto(STORED_ID_ONE, HEADING, BODY, CREATE_TIME, UPDATE_TIME, USER_ID, TAG_DTO_LIST);
+    private static final TagResponseDto TAG_DTO_ONE = new TagResponseDto(STORED_ID_ONE, "Name", LocalDateTime.now());
+    private static final List<Long> TAG_DTO_LIST = Arrays.asList(TAG_DTO_ONE.getId());
+    private static final EntryRequestDto ENTRY_DTO = new EntryRequestDto(
+            STORED_ID_ONE,
+            HEADING,
+            BODY,
+            USER_ID,
+            TAG_DTO_LIST
+    );
 
     @Test
     void entityToDto() {
-        EntryDto dto = ENTRY_DTO;
-        Entry entry = new EntryMapper().dtoToEntity(dto);
+        Entry entry = ENTRY;
+        EntryResponseDto entryRequestDto = new EntryMapper().entityToResponseDto(entry);
 
-        assertEquals(BODY, entry.getBody());
-        assertEquals(HEADING, entry.getHeading());
-        assertEquals(CREATE_TIME, entry.getTimeCreate());
-        assertEquals(UPDATE_TIME, entry.getTimeUpdate());
-        assertEquals(USER_ID, entry.getId());
+        assertEquals(BODY, entryRequestDto.getBody());
+        assertEquals(HEADING, entryRequestDto.getHeading());
+        assertEquals(USER_ID, entryRequestDto.getId());
+
     }
 
     @Test
     void dtoToEntity() {
-        Entry entry = ENTRY;
-        EntryDto entryDto = new EntryMapper().entityToDto(entry);
+        EntryRequestDto dto = ENTRY_DTO;
+        Entry entry = new EntryMapper().requestDtoToEntity(dto);
 
-        assertEquals(BODY, entryDto.getBody());
-        assertEquals(HEADING, entryDto.getHeading());
-        assertEquals(CREATE_TIME, entryDto.getTimeCreate());
-        assertEquals(UPDATE_TIME, entryDto.getTimeUpdate());
-        assertEquals(USER_ID, entryDto.getId());
+        assertEquals(BODY, entry.getBody());
+        assertEquals(HEADING, entry.getHeading());
+        assertEquals(USER_ID, entry.getId());
     }
 }

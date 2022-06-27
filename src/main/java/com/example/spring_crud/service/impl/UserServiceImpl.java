@@ -1,7 +1,7 @@
 package com.example.spring_crud.service.impl;
 
 import com.example.spring_crud.mapper.UserMapper;
-import com.example.spring_crud.model.dto.UserDto;
+import com.example.spring_crud.model.dto.UserRequestDto;
 import com.example.spring_crud.model.entity.User;
 import com.example.spring_crud.repository.UserRepository;
 import com.example.spring_crud.service.UserService;
@@ -20,31 +20,40 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper mapper;
 
-//todo Добавить метод, updateEntity,
-
     @Override
-    public List<UserDto> findAllWithPage(int page, int size) {
+    public List<UserRequestDto> findAllWithPage(int page, int size) {
         Page<User> users = repository.findAll(PageRequest.of(page, size));
-        List<UserDto> dtoList = users.stream()
+        List<UserRequestDto> dtoList = users.stream()
                 .map(user -> mapper.userToDto(user))
                 .collect(Collectors.toList());
         return dtoList;
     }
 
     @Override
-    public UserDto getUserById(Long id) {
+    public UserRequestDto getUserById(Long id) {
         User user = repository.getById(id);
         return mapper.userToDto(user);
     }
 
     @Override
-    public boolean updateUser(Long id) {
-        return true;
+    public boolean updateUser(UserRequestDto dto) {
+        User user = repository.getById(dto.getId());
+        user.setId(dto.getId());
+        user.setLogin(dto.getLogin());
+        user.setPassword(dto.getPassword());
+        user.setNickName(dto.getNickName());
+        user.setTimeRegistration(dto.getTimeRegistration());
+        try {
+            repository.save(user);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
-    public boolean saveUser(UserDto userDto) {
-        User user = mapper.dtoToUser(userDto);
+    public boolean saveUser(UserRequestDto userRequestDto) {
+        User user = mapper.dtoToUser(userRequestDto);
         try {
             repository.save(user);
             return true;

@@ -1,0 +1,13 @@
+#Ожидается в ответе true
+POST http://localhost:8080/saveEntry
+Content-Type: application/json
+
+{
+  "heading": "some head2",
+  "body": "some body2",
+  "userId": 2,
+  "tagList": [4]
+}
+
+### ожидается сущность
+GET http://localhost:8080/entry/10

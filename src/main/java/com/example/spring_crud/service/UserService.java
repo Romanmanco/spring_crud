@@ -1,18 +1,18 @@
 package com.example.spring_crud.service;
 
-import com.example.spring_crud.model.dto.UserDto;
+import com.example.spring_crud.model.dto.UserRequestDto;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<UserDto> findAllWithPage(int page, int size);
+    List<UserRequestDto> findAllWithPage(int page, int size);
 
-    UserDto getUserById(Long id);
+    UserRequestDto getUserById(Long id);
 
-    boolean updateUser(Long id);
+    boolean updateUser(UserRequestDto dto);
 
-    boolean saveUser(UserDto userDto);
+    boolean saveUser(UserRequestDto userRequestDto);
 
     boolean deleteById(Long id);
 }

@@ -1,6 +1,7 @@
 package com.example.spring_crud.controllers.rest;
 
-import com.example.spring_crud.model.dto.EntryDto;
+import com.example.spring_crud.model.dto.EntryRequestDto;
+import com.example.spring_crud.model.dto.EntryResponseDto;
 import com.example.spring_crud.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,25 +11,25 @@ public class EntryController {
     @Autowired
     EntryService entryService;
 
-    @GetMapping("/getPageEntry")
-    public String getPageEntry (@RequestParam Integer page,
-                                       @RequestParam(required = false) Integer resultCount) {
-        entryService.findAllWithPage(page, resultCount);
-        return "entryPage";
-    }
+    //todo
+//    @GetMapping("/getPageEntry")
+//    public List<EntryRequestDto> getPageEntry (@RequestParam Integer page,
+//                                               @RequestParam Integer resultCount) {
+//        return entryService.findAllWithPage(page, resultCount);
+//    }
 
     @GetMapping("/entry/{id}")
-    public EntryDto getEntry (@RequestParam Long id) {
+    public EntryResponseDto getEntry (@PathVariable(value = "id") Long id) {
         return entryService.getEntryById(id);
     }
 
     @PostMapping("/updateEntry")
-    public boolean updateEntry (@RequestBody EntryDto dto) {
+    public boolean updateEntry (@RequestBody EntryRequestDto dto) {
         return entryService.updateEntry(dto);
     }
 
     @PostMapping("/saveEntry")
-    public boolean entryAdd (EntryDto dto) {
+    public boolean entryAdd (@RequestBody EntryRequestDto dto) {
         return entryService.saveEntry(dto);
     }
 

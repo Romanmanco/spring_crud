@@ -1,14 +1,15 @@
 package com.example.spring_crud.mapper;
 
-import com.example.spring_crud.model.dto.EntryDto;
+import com.example.spring_crud.model.dto.EntryRequestDto;
+import com.example.spring_crud.model.dto.EntryResponseDto;
 import com.example.spring_crud.model.entity.Entry;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EntryMapper {
 
-    public EntryDto entityToDto(Entry entry) {
-        EntryDto dto = new EntryDto();
+    public EntryResponseDto entityToResponseDto(Entry entry) {
+        EntryResponseDto dto = new EntryResponseDto();
         dto.setId(entry.getId());
         dto.setHeading(entry.getHeading());
         dto.setBody(entry.getBody());
@@ -18,13 +19,11 @@ public class EntryMapper {
         return dto;
     }
 
-    public Entry dtoToEntity(EntryDto entryDto) {
+    public Entry requestDtoToEntity(EntryRequestDto entryRequestDto) {
         Entry entity = new Entry();
-        entity.setId(entryDto.getId());
-        entity.setHeading(entryDto.getHeading());
-        entity.setBody(entryDto.getBody());
-        entity.setTimeCreate(entryDto.getTimeCreate());
-        entity.setTimeUpdate(entryDto.getTimeUpdate());
+        entity.setId(entryRequestDto.getId());
+        entity.setHeading(entryRequestDto.getHeading());
+        entity.setBody(entryRequestDto.getBody());
         entity.setUser(entity.getUser());
         return entity;
     }

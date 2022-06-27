@@ -36,10 +36,9 @@ public class Entry {
     private LocalDateTime timeUpdate;
 
     @ManyToOne (cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user")
     private User user;
 
+    //TODO проставить правильные настройки
     @ManyToMany
-//    @JoinColumn(name = "tag")
     private List<Tag> tagList;
 }

@@ -2,11 +2,12 @@ package com.example.spring_crud.service.impl;
 
 import com.example.spring_crud.mapper.EntryMapper;
 import com.example.spring_crud.mapper.TagMapper;
-import com.example.spring_crud.model.dto.EntryDto;
-import com.example.spring_crud.model.dto.TagDto;
+import com.example.spring_crud.model.dto.EntryRequestDto;
+import com.example.spring_crud.model.dto.EntryResponseDto;
 import com.example.spring_crud.model.entity.Entry;
 import com.example.spring_crud.model.entity.Tag;
 import com.example.spring_crud.repository.EntryRepository;
+import com.example.spring_crud.repository.TagRepository;
 import com.example.spring_crud.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,38 +24,35 @@ public class EntryServiceImpl implements EntryService {
     @Autowired
     EntryRepository repository;
     @Autowired
+    TagRepository tagRepository;
+    @Autowired
     EntryMapper mapper;
     @Autowired
     TagMapper tagMapper;
 
     @Override
-    public List<EntryDto> findAllWithPage(int page, int size) {
+    public List<EntryResponseDto> findAllWithPage(int page, int size) {
         Page<Entry> items = repository.findAll(PageRequest.of(page, size));
-        List<EntryDto> dtoList = items.stream()
-                .map(item -> mapper.entityToDto(item))
+        List<EntryResponseDto> dtoList = items.stream()
+                .map(item -> mapper.entityToResponseDto(item))
                 .collect(Collectors.toList());
         return dtoList;
     }
 
     @Override
-    public EntryDto getEntryById(Long id) {
+    public EntryResponseDto getEntryById(Long id) {
         Entry entry = repository.getById(id);
-        return mapper.entityToDto(entry);
+        return mapper.entityToResponseDto(entry);
     }
 
     @Override
-    public boolean updateEntry(EntryDto dto) {
-        //найти запись
+    public boolean updateEntry(EntryRequestDto dto) {
+        List<Long> tagIdList = dto.getTagIdList();
+        List<Tag> tagList = getTagList(tagIdList);
         Entry entry = repository.getById(dto.getId());
-
-        List<Tag> tagList = getTagList(dto.getTagList());
-        //заполнить значения
         entry.setHeading(dto.getHeading());
         entry.setBody(dto.getBody());
-        entry.setTimeUpdate(LocalDateTime.now());
         entry.setTagList(tagList);
-
-        //сохранить
         try {
             repository.save(entry);
             return true;
@@ -63,19 +61,22 @@ public class EntryServiceImpl implements EntryService {
         }
     }
 
-    //TODO все приватные методы должны быть под публичными
-    private List<Tag> getTagList(List<TagDto> tagList) {
+    private List<Tag> getTagList(List<Long> tagList) {
         List<Tag> listTag = new ArrayList<>();
-        for (TagDto element : tagList) {
-            Tag tag = tagMapper.dtoToTag(element);
+        for (Long element : tagList) {
+            Tag tag = tagRepository.getById(element);
             listTag.add(tag);
         }
         return listTag;
     }
 
     @Override
-    public boolean saveEntry(EntryDto entryDto) {
-        Entry entry = mapper.dtoToEntity(entryDto);
+    public boolean saveEntry(EntryRequestDto entryRequestDto) {
+        LocalDateTime dateTime = LocalDateTime.now();
+
+        Entry entry = mapper.requestDtoToEntity(entryRequestDto);
+        entry.setTimeCreate(dateTime);
+        entry.setTimeUpdate(dateTime);
         try {
             repository.save(entry);
             return true;
@@ -93,5 +94,5 @@ public class EntryServiceImpl implements EntryService {
             return false;
         }
     }
+
 }
-//получить записи постранично по тегу(на будущее, если все готово

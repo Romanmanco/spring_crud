@@ -1,7 +1,7 @@
 package com.example.spring_crud.service.impl;
 
 import com.example.spring_crud.mapper.TagMapper;
-import com.example.spring_crud.model.dto.TagDto;
+import com.example.spring_crud.model.dto.TagRequestDto;
 import com.example.spring_crud.model.entity.Tag;
 import com.example.spring_crud.repository.TagRepository;
 import org.junit.jupiter.api.Test;
@@ -27,10 +27,10 @@ public class TagServiceImplTest {
     private static final Long STORED_ID = 1L;
     private static final String NAME = "Name";
     private static final LocalDateTime TIME_CREATE = LocalDateTime.now();
-    private static final TagDto TAG_DTO = new TagDto(STORED_ID, NAME, TIME_CREATE);
+    private static final TagRequestDto TAG_DTO = new TagRequestDto(STORED_ID, NAME, TIME_CREATE);
     private static final Tag STORED_TAG = new Tag(STORED_ID, NAME, TIME_CREATE);
 
-    private TagDto tagDto;
+    private TagRequestDto tagRequestDto;
 
     @Spy
     @InjectMocks
@@ -45,15 +45,15 @@ public class TagServiceImplTest {
     @Test
     public void findAllTagsTest() {
         List<Tag> tagList = getTagList();
-        List<TagDto> tagDtoList = getTagDtoList();
+        List<TagRequestDto> tagRequestDtoList = getTagDtoList();
         PageImpl<Tag> page = new PageImpl<>(tagList);
 
         Mockito.when(repository.findAll(PageRequest.of(1, 20)))
                 .thenReturn(page);
         Mockito.when(mapper.tagToDto(tagList.get(0)))
-                .thenReturn(tagDtoList.get(0));
+                .thenReturn(tagRequestDtoList.get(0));
 
-        List<TagDto> dtoList = tagService.findAllWithPage(1, 20);
+        List<TagRequestDto> dtoList = tagService.findAllWithPage(1, 20);
         assertEquals(1, dtoList.size());
         assertEquals("Name", dtoList.get(0).getName());
     }
@@ -65,15 +65,15 @@ public class TagServiceImplTest {
         Mockito.when(mapper.tagToDto(STORED_TAG))
                 .thenReturn(TAG_DTO);
 
-        TagDto tagById = tagService.getTagById(STORED_ID);
+        TagRequestDto tagById = tagService.getTagById(STORED_ID);
 
         assertEquals(TAG_DTO, tagById);
     }
 
     @Test
     public void tagSaveTest() {
-        tagDto = new TagDto(STORED_ID, NAME, TIME_CREATE);
-        boolean success = tagService.saveTag(tagDto);
+        tagRequestDto = new TagRequestDto(STORED_ID, NAME, TIME_CREATE);
+        boolean success = tagService.saveTag(tagRequestDto);
         assertTrue(success);
     }
 
@@ -91,10 +91,10 @@ public class TagServiceImplTest {
         return Arrays.asList(tag);
     }
 
-    private List<TagDto> getTagDtoList() {
-        TagDto tagDto = new TagDto();
-        tagDto.setName(NAME);
-        tagDto.setTimeCreate(TIME_CREATE);
-        return Arrays.asList(tagDto);
+    private List<TagRequestDto> getTagDtoList() {
+        TagRequestDto tagRequestDto = new TagRequestDto();
+        tagRequestDto.setName(NAME);
+        tagRequestDto.setTimeCreate(TIME_CREATE);
+        return Arrays.asList(tagRequestDto);
     }
 }

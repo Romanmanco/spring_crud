@@ -1,14 +1,14 @@
 package com.example.spring_crud.mapper;
 
-import com.example.spring_crud.model.dto.UserDto;
+import com.example.spring_crud.model.dto.UserRequestDto;
 import com.example.spring_crud.model.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
 
-    public UserDto userToDto(User user) {
-        UserDto dto = new UserDto();
+    public UserRequestDto userToDto(User user) {
+        UserRequestDto dto = new UserRequestDto();
         dto.setId(user.getId());
         dto.setLogin(user.getLogin());
         dto.setPassword(user.getPassword());
@@ -17,13 +17,13 @@ public class UserMapper {
         return dto;
     }
 
-    public User dtoToUser(UserDto userDto) {
+    public User dtoToUser(UserRequestDto userRequestDto) {
         User entity = new User();
-        entity.setId(userDto.getId());
-        entity.setLogin(userDto.getLogin());
-        entity.setPassword(userDto.getPassword());
-        entity.setNickName(userDto.getNickName());
-        entity.setTimeRegistration(userDto.getTimeRegistration());
+        entity.setId(userRequestDto.getId());
+        entity.setLogin(userRequestDto.getLogin());
+        entity.setPassword(userRequestDto.getPassword());
+        entity.setNickName(userRequestDto.getNickName());
+        entity.setTimeRegistration(userRequestDto.getTimeRegistration());
         return entity;
     }
 }

@@ -1,7 +1,7 @@
 package com.example.spring_crud.service.impl;
 
 import com.example.spring_crud.mapper.TagMapper;
-import com.example.spring_crud.model.dto.TagDto;
+import com.example.spring_crud.model.dto.TagRequestDto;
 import com.example.spring_crud.model.entity.Tag;
 import com.example.spring_crud.repository.TagRepository;
 import com.example.spring_crud.service.TagService;
@@ -18,31 +18,27 @@ public class TagServiceImpl implements TagService {
     @Autowired
     TagRepository repository;
 
-
     @Autowired
     TagMapper mapper;
 
-    //todo Добавить методы createEntity,
-//deleteEntity в каждом сервисе и сделать их реализацию.
-
     @Override
-    public List<TagDto> findAllWithPage(int page, int size) {
+    public List<TagRequestDto> findAllWithPage(int page, int size) {
         Page<Tag> tags = repository.findAll(PageRequest.of(page, size));
-        List<TagDto> dtoList = tags.stream()
+        List<TagRequestDto> dtoList = tags.stream()
                 .map(tag -> mapper.tagToDto(tag))
                 .collect(Collectors.toList());
         return dtoList;
     }
 
     @Override
-    public TagDto getTagById(Long id) {
+    public TagRequestDto getTagById(Long id) {
         Tag tag = repository.getById(id);
         return mapper.tagToDto(tag);
     }
 
     @Override
-    public boolean saveTag(TagDto tagDto) {
-        Tag tag = mapper.dtoToTag(tagDto);
+    public boolean saveTag(TagRequestDto tagRequestDto) {
+        Tag tag = mapper.dtoToTag(tagRequestDto);
         try {
             repository.save(tag);
             return true;

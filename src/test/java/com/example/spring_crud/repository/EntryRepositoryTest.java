@@ -54,6 +54,7 @@ class EntryRepositoryTest {
     @Autowired
     TagRepository tagRepository;
 
+    //TODO проверить сохранение тэгов
     @Test
     public void itemSaveTest() {
         init();
@@ -113,7 +114,6 @@ class EntryRepositoryTest {
 
         repository.save(storedEntry);
 
-
         assertEquals(EXPECTED_VALUE_ONE, entryList.size());
         assertEquals(BODY, entryList.get(INDEX_OF_EXPECTED_ENTRY_ONE).getBody());
         assertEquals(HEADING, entryList.get(INDEX_OF_EXPECTED_ENTRY_ONE).getHeading());
@@ -134,8 +134,6 @@ class EntryRepositoryTest {
         assertEquals(EXPECTED_USER_NICK, entryList.get(INDEX_OF_EXPECTED_ENTRY_ONE).getUser().getNickName());
     }
 
-
-    //user обновляется потому что мы инициализируем его с возиожностью обновления и работа идет с помощью докера
     private void checkUserUpdate(Entry storedEntry) {
         User secondUser = userRepository.getById(2L);
 

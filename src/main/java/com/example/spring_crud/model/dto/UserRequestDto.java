@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class TagDto {
+public class UserRequestDto {
 
     private Long id;
-    private String name;
-    private LocalDateTime timeCreate;
-
+    private String login;
+    private String password;
+    private String nickName;
+    private LocalDateTime timeRegistration;
 }
-
