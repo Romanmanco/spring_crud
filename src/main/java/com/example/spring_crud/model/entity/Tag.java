@@ -6,13 +6,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(uniqueConstraints =
-        {
-            @UniqueConstraint(columnNames = "name")
-        }
-)
+@Table(name = "tag")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -26,4 +23,7 @@ public class Tag {
 
     @Column(name = "time_create", nullable = false)
     private LocalDateTime timeCreate;
+
+    @ManyToMany (cascade = CascadeType.ALL, mappedBy = "tagList")
+    private List<Entry> entry;
 }

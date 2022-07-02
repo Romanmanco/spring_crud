@@ -34,7 +34,6 @@ class EntryServiceImplTest {
     private static final Long STORED_ID_TWO = 2L;
 
     private static final String BODY = "body";
-
     private static final String HEADING = "heading";
 
     private static final LocalDateTime CREATE_TIME = LocalDateTime.now();
@@ -48,7 +47,10 @@ class EntryServiceImplTest {
             "Nick",
             LocalDateTime.now());
 
-    private static final Tag TAG_ONE = new Tag(STORED_ID_ONE, "Name", LocalDateTime.now());
+    private static final Entry ENTRY = new Entry();
+    private static final List<Entry> ENTRY_LIST = Arrays.asList(ENTRY);
+
+    private static final Tag TAG_ONE = new Tag(STORED_ID_ONE, "Name", LocalDateTime.now(), ENTRY_LIST);
     private static final List<Tag> TAG_LIST = Arrays.asList(TAG_ONE);
     private static final Entry STORED_ENTRY = new Entry(
             STORED_ID_ONE,
@@ -61,7 +63,7 @@ class EntryServiceImplTest {
     );
     private static final TagRequestDto TAG_REQUEST_DTO_TWO = new TagRequestDto(STORED_ID_TWO, "Name1", CREATE_TIME);
     private static final TagResponseDto TAG__RESPONSE_DTO_TWO = new TagResponseDto(STORED_ID_TWO, "Name1", CREATE_TIME);
-    private static final Tag TAG_TWO = new Tag(STORED_ID_TWO, "Name2", LocalDateTime.now());
+    private static final Tag TAG_TWO = new Tag(STORED_ID_TWO, "Name2", LocalDateTime.now(), ENTRY_LIST);
     private static final List<TagResponseDto> TAG_DTO_LIST = Arrays.asList(TAG__RESPONSE_DTO_TWO);
     private static final List<Long> TAG_IDS_LIST = Arrays.asList(STORED_ID_TWO);
     private static final EntryResponseDto ENTRY_DTO = new EntryResponseDto(
@@ -84,7 +86,6 @@ class EntryServiceImplTest {
     @Spy
     @InjectMocks
     private EntryServiceImpl entryService;
-
     @Mock
     private EntryRepository repository;
     @Mock

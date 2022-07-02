@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Transactional
 public class UserRepositoryTest {
 
-    private static final int EXPECTED_VALUE_ONE = 1;
     private static final int EXPECTED_VALUE_ZERO = 0;
     private static final String EXPECTED_USER_LOGIN = "Login";
     private static final String EXPECTED_USER_LOGIN_SECOND = "Login 2";
@@ -60,7 +59,6 @@ public class UserRepositoryTest {
 
         List<User> userList = repository.findAll();
 
-        assertEquals(EXPECTED_VALUE_ONE, userList.size());
         assertEquals(EXPECTED_USER_NICK, userList.get(INDEX_OF_EXPECTED_USER_ONE).getNickName());
         assertEquals(EXPECTED_USER_LOGIN, userList.get(INDEX_OF_EXPECTED_USER_ONE).getLogin());
         assertEquals(EXPECTED_USER_PASSWORD, userList.get(INDEX_OF_EXPECTED_USER_ONE).getPassword());
@@ -69,20 +67,10 @@ public class UserRepositoryTest {
 
     @Test
     public void userDeleteTest() {
-        //подключить репу Entry
-        //инциализация
-        //попытка удаления
-        //проверка, что юзеры удалились из базы
-        //проверка, что записи связанные с юзером удалились из базы
-
-
-        //Если инициализируем только юзера - он удаляется
-//        init();
         initWithEntry();
 
         repository.deleteAll();
 
-        //если удаляем из ентри, тест проходит
         entryRepository.deleteAll();
 
         List<User> all = repository.findAll();

@@ -47,12 +47,12 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public boolean updateEntry(EntryRequestDto dto) {
-        List<Long> tagIdList = dto.getTagIdList();
-        List<Tag> tagList = getTagList(tagIdList);
         Entry entry = repository.getById(dto.getId());
+        entry.setId(dto.getId());
         entry.setHeading(dto.getHeading());
         entry.setBody(dto.getBody());
-        entry.setTagList(tagList);
+        entry.setUser(entry.getUser());
+        entry.setTagList(entry.getTagList());
         try {
             repository.save(entry);
             return true;
@@ -61,12 +61,32 @@ public class EntryServiceImpl implements EntryService {
         }
     }
 
+//    @Override
+//    public boolean updateEntry(EntryRequestDto dto) {
+//        List<Long> tagIdList = dto.getTagIdList();
+//        List<Tag> tagList = getTagList(tagIdList);
+//        Entry entry = repository.getById(dto.getId());
+//        entry.setId(dto.getId());
+//        entry.setHeading(dto.getHeading());
+//        entry.setBody(dto.getBody());
+//        entry.setTagList(tagList);
+//        try {
+//            repository.save(entry);
+//            return true;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//    }
+
     private List<Tag> getTagList(List<Long> tagList) {
         List<Tag> listTag = new ArrayList<>();
         for (Long element : tagList) {
             Tag tag = tagRepository.getById(element);
             listTag.add(tag);
+            tagRepository.save(tag);
         }
+
         return listTag;
     }
 

@@ -1,10 +1,13 @@
 package com.example.spring_crud.mapper;
 
 import com.example.spring_crud.model.dto.TagRequestDto;
+import com.example.spring_crud.model.entity.Entry;
 import com.example.spring_crud.model.entity.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,8 +16,9 @@ public class TagMapperTest {
     private static final Long ID = 1L;
     private static final String TAG_NAME = "Name";
     private static final LocalDateTime CREATE_TIME = LocalDateTime.now();
-
-    private static final Tag TAG = new Tag(ID, TAG_NAME, CREATE_TIME);
+    private static final Entry ENTRY = new Entry();
+    private static final List<Entry> ENTRY_LIST = Arrays.asList(ENTRY);
+    private static final Tag TAG = new Tag(ID, TAG_NAME, CREATE_TIME, ENTRY_LIST);
     private static final TagRequestDto TAG_DTO = new TagRequestDto(ID, TAG_NAME, CREATE_TIME);
 
     @Test

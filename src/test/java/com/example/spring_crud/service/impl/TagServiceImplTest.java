@@ -2,6 +2,7 @@ package com.example.spring_crud.service.impl;
 
 import com.example.spring_crud.mapper.TagMapper;
 import com.example.spring_crud.model.dto.TagRequestDto;
+import com.example.spring_crud.model.entity.Entry;
 import com.example.spring_crud.model.entity.Tag;
 import com.example.spring_crud.repository.TagRepository;
 import org.junit.jupiter.api.Test;
@@ -27,8 +28,10 @@ public class TagServiceImplTest {
     private static final Long STORED_ID = 1L;
     private static final String NAME = "Name";
     private static final LocalDateTime TIME_CREATE = LocalDateTime.now();
+    private static final Entry ENTRY = new Entry();
+    private static final List<Entry> ENTRY_LIST = Arrays.asList(ENTRY);
     private static final TagRequestDto TAG_DTO = new TagRequestDto(STORED_ID, NAME, TIME_CREATE);
-    private static final Tag STORED_TAG = new Tag(STORED_ID, NAME, TIME_CREATE);
+    private static final Tag STORED_TAG = new Tag(STORED_ID, NAME, TIME_CREATE, ENTRY_LIST);
 
     private TagRequestDto tagRequestDto;
 

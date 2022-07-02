@@ -85,9 +85,6 @@ class EntryRepositoryTest {
         assertEquals(FIRST_USER_ID,storedEntry.getUser().getId());
     }
 
-    //todo проверить все поля, что они обновляются или не обновляются
-    //todo CreateDate - не должно обновляться.
-    //todo провести исследование, почему разрешена замена юзера и найти, как ее исправить(запретить замену)
     @Test
     public void entryUpdateTest() {
         init();

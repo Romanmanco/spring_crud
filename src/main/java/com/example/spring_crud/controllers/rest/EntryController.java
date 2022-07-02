@@ -23,7 +23,7 @@ public class EntryController {
         return entryService.getEntryById(id);
     }
 
-    @PostMapping("/updateEntry")
+    @PostMapping("/entry/{id}/edit")
     public boolean updateEntry (@RequestBody EntryRequestDto dto) {
         return entryService.updateEntry(dto);
     }

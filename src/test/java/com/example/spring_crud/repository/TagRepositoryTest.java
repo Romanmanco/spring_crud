@@ -36,17 +36,6 @@ public class TagRepositoryTest {
     TagRepository repository;
 
     @Test
-    public void tagSaveTest() {
-        init();
-
-        List<Tag> tagList = repository.findAll();
-
-        assertEquals(EXPECTED_VALUE_THREE, tagList.size());
-        assertEquals(NAME, tagList.get(INDEX_OF_EXPECTED_TAG_ONE).getName());
-        assertEquals(CREATE_TIME, tagList.get(INDEX_OF_EXPECTED_TAG_ONE).getTimeCreate());
-    }
-
-    @Test
     public void findByIdTest() {
         init();
 
@@ -57,7 +46,17 @@ public class TagRepositoryTest {
         assertEquals(CREATE_TIME, storedTag.getTimeCreate());
     }
 
-    //как проверить уникальность ?
+    @Test
+    public void tagSaveTest() {
+        init();
+
+        List<Tag> tagList = repository.findAll();
+
+        assertEquals(EXPECTED_VALUE_THREE, tagList.size());
+        assertEquals(NAME, tagList.get(INDEX_OF_EXPECTED_TAG_ONE).getName());
+        assertEquals(CREATE_TIME, tagList.get(INDEX_OF_EXPECTED_TAG_ONE).getTimeCreate());
+    }
+
     @Test
     public void tagUpdateTest() {
         init();
@@ -70,7 +69,6 @@ public class TagRepositoryTest {
         repository.save(storedTag);
 
         List<Tag> tagListTwo = repository.findAll();
-//        assertEquals(EXPECTED_VALUE_THREE, tagListTwo.size());
         assertEquals(NAME_SECOND, tagListTwo.get(INDEX_OF_EXPECTED_TAG_ONE).getName());
         assertEquals(CREATE_TIME_TWO, tagListTwo.get(INDEX_OF_EXPECTED_TAG_ONE).getTimeCreate());
     }

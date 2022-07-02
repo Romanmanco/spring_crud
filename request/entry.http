@@ -1,13 +1,42 @@
-#Ожидается в ответе true
+### Ожидается созданная в ручную запись
+GET http://localhost:8080/entry/1
+
+### Ожидается добавление true
 POST http://localhost:8080/saveEntry
 Content-Type: application/json
 
 {
-  "heading": "some head2",
-  "body": "some body2",
-  "userId": 2,
-  "tagList": [4]
+  "id": 2,
+  "heading": "head2",
+  "body": "body2",
+  "timeCreate": "2022-07-02T21:34:05",
+  "timeUpdate": "2022-07-02T21:39:29",
+  "userId": 1,
+  "tagList": {
+    "id": 1,
+    "name": "tag",
+    "timeCreate": "2022-07-02T20:41:49"
+  }
 }
 
-### ожидается сущность
-GET http://localhost:8080/entry/10
+### Ожидается изменение true
+POST http://localhost:8080/entry/17/edit
+Content-Type: application/json
+
+{
+"id": 17,
+"heading": "headhead",
+"body": "bodyhead",
+"timeCreate": "2022-07-02T21:34:05",
+"timeUpdate": "2022-07-02T21:39:29",
+"userId": 1,
+"tagList": {
+"id": 1,
+"name": "tag",
+"timeCreate": "2022-07-02T20:41:49"
+}
+}
+
+
+### Ожидлается удаление true
+POST http://localhost:8080/entry/1/remove
