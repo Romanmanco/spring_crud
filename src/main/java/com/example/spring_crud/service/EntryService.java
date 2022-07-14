@@ -5,6 +5,13 @@ import com.example.spring_crud.model.dto.EntryResponseDto;
 
 import java.util.List;
 
+/**
+ * Интерфейс содержит методы Entry, которые нужны для манипуляций с данными.
+ *
+ * @author Roman Manko
+ * @version 1.0
+ */
+
 public interface EntryService {
 
     List<EntryResponseDto> findAllWithPage(int page, int size);

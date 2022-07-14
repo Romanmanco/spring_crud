@@ -13,8 +13,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Класс реализует методы интерфейса TagService.
+ * Для записи/удаления/нахождения/обновления используется методы из класса TagRepository.
+ * Для преобразования данных используются методы из класса TagMapper.
+ * Аннотация @Service помечает что компонент содерожит бизнес-логику приложения.
+ * Аннотация @Autowired используется для проводки связи между объектами.
+ *
+ * @author Roman Manko
+ * @version 1.0
+ */
+
 @Service
 public class TagServiceImpl implements TagService {
+
     @Autowired
     TagRepository repository;
 

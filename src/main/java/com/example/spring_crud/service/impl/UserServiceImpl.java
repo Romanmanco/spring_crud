@@ -13,10 +13,23 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Класс реализует методы интерфейса UserService.
+ * Для записи/удаления/нахождения/обновления используется методы из класса UserRepository.
+ * Для преобразования данных используются методы из класса UserMapper.
+ * Аннотация @Service помечает что компонент содерожит бизнес-логику приложения.
+ * Аннотация @Autowired используется для проводки связи между объектами.
+ *
+ * @author Roman Manko
+ * @version 1.0
+ */
+
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     UserRepository repository;
+
     @Autowired
     UserMapper mapper;
 

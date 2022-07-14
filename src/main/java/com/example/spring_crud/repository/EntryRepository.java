@@ -7,6 +7,16 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Аннотация @Repository используется для указания того что интерфейс EntryRepository импользуется для хранения,
+ * извлечения, изменения, удаления объектов.
+ * Интерфейс наследуется от JpaRepository, благодаря чему можно использовать его методы в проекте.
+ *
+ * @author Roman Manko
+ * @version 1.0
+ */
+
+
 @Repository
 public interface EntryRepository extends JpaRepository<Entry, Long> {
 

@@ -5,7 +5,6 @@ import com.example.spring_crud.mapper.TagMapper;
 import com.example.spring_crud.model.dto.EntryRequestDto;
 import com.example.spring_crud.model.dto.EntryResponseDto;
 import com.example.spring_crud.model.entity.Entry;
-import com.example.spring_crud.model.entity.Tag;
 import com.example.spring_crud.repository.EntryRepository;
 import com.example.spring_crud.repository.TagRepository;
 import com.example.spring_crud.service.EntryService;
@@ -15,18 +14,32 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Класс реализует методы интерфейса EntryService.
+ * Для записи/удаления/нахождения/обновления используется методы из класса EntryRepository, TagRepository.
+ * Для преобразования данных используются методы из класса EntryMapper, TagMapper.
+ * Аннотация @Service помечает что компонент содерожит бизнес-логику приложения.
+ * Аннотация @Autowired используется для проводки связи между объектами.
+ *
+ * @author Roman Manko
+ * @version 1.0
+ */
+
 @Service
 public class EntryServiceImpl implements EntryService {
+
     @Autowired
     EntryRepository repository;
+
     @Autowired
     TagRepository tagRepository;
+
     @Autowired
     EntryMapper mapper;
+
     @Autowired
     TagMapper tagMapper;
 
@@ -59,35 +72,6 @@ public class EntryServiceImpl implements EntryService {
         } catch (Exception e) {
             return false;
         }
-    }
-
-//    @Override
-//    public boolean updateEntry(EntryRequestDto dto) {
-//        List<Long> tagIdList = dto.getTagIdList();
-//        List<Tag> tagList = getTagList(tagIdList);
-//        Entry entry = repository.getById(dto.getId());
-//        entry.setId(dto.getId());
-//        entry.setHeading(dto.getHeading());
-//        entry.setBody(dto.getBody());
-//        entry.setTagList(tagList);
-//        try {
-//            repository.save(entry);
-//            return true;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
-
-    private List<Tag> getTagList(List<Long> tagList) {
-        List<Tag> listTag = new ArrayList<>();
-        for (Long element : tagList) {
-            Tag tag = tagRepository.getById(element);
-            listTag.add(tag);
-            tagRepository.save(tag);
-        }
-
-        return listTag;
     }
 
     @Override

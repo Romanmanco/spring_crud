@@ -4,6 +4,16 @@ import com.example.spring_crud.model.dto.UserRequestDto;
 import com.example.spring_crud.model.entity.User;
 import org.springframework.stereotype.Component;
 
+/**
+ * Класс используется для преобразования сущьности в dto или dto в сущьность.
+ * Аннотация @Component позволяет Spring определять компонент программы.
+ *
+ * @return возвращает dto или сущьность.
+ *
+ * @author Roman Manko
+ * @version 1.0
+ */
+
 @Component
 public class UserMapper {
 
