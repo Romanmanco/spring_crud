@@ -37,12 +37,12 @@ public class UserController {
      */
 
     @PostMapping("/user/{id}/edit")
-    public boolean userEdit(@RequestBody UserRequestDto dto) {
+    public boolean userUpdate(@RequestBody UserRequestDto dto) {
         return userService.updateUser(dto);
     }
 
     @PostMapping("/addUser")
-    public boolean userAdd(@RequestBody UserRequestDto dto) {
+    public boolean userSave(@RequestBody UserRequestDto dto) {
         return userService.saveUser(dto);
     }
 

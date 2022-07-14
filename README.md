@@ -4,6 +4,7 @@
 
 Проект созданый для изучения spring с использованием spring initializr. (https://start.spring.io/)
 
-В этом проекте будут реализованы функции CRUD.
+Cервис в котором представлена работа с базой данных, взаимодействие со внешним миром посредством REST 
+и покрытие тестами всех уровней приложения.
 
-Стек технологий: spring boot, maven, thymeleaf, hibernate, lombok, postgresql, junit. Паттерны: MVC, CRUD, REST, DAO.
+Стек технологий: spring boot, maven, hibernate, lombok, postgresql, junit.

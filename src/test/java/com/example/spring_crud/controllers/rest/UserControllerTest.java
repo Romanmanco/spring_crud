@@ -58,7 +58,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void userEdit() throws Exception{
+    public void userUpdate() throws Exception{
         UserRequestDto dto = new UserRequestDto();
         dto.setId(1L);
         dto.setLogin("login");
@@ -82,7 +82,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void userAdd() throws Exception{
+    public void userSave() throws Exception{
         UserRequestDto dto = new UserRequestDto();
         dto.setId(1L);
         dto.setLogin("login");
